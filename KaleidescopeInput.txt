@@ -1,0 +1,10 @@
+extern putchard(char);
+def printstars(n)
+	for i = 1, i < n, 1.0 in
+		putchard(42);
+	for i = 1, i < n, 1.0 in
+		printd(i);
+
+
+printstar(100);
+
