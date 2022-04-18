@@ -16,4 +16,11 @@ def testTwo(n)
 	for i = 1, i < n, 2.0 in
 		y = y * 2;
 testTwo(20);
+
+def testThree(n, m)
+	for int i = 0, i < k; 1.0 in
+  		for int j = 0, j < m, 1.0 in
+    			putchard(24);
+testThree(5, 5);
+
 		
