@@ -56,33 +56,15 @@ std::vector<double> findloopheader(ForExprAst* forloop){
   
   
   
+  for(auto const&x : TheModule->Functions){
   
   
+  FunctionAST* func = x.second.first.get();
+  ForExprAST* forloop;
+  BinaryExprAST* exp = dynamic_cast<BinaryExprAST*>(func->Body.get());
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  ForExprAST* valueright = dynamic_cast<ForExprAST*>(exp->RHS.get());
+  ForExprAST* valueleft = dynamic_cast<ForExprAST*>(exp->LHS.get());
   
   std::vector<double> header1 = findloopheader(valueleft);
   std::vector<double> header2 = findloopheader(valueright);
