@@ -73,7 +73,7 @@
     	
     	bool same = true;
     	for(int i = 0; i < 3; i++){
-    	  if(headerfor1.at(i) != headerfor2.at(i)){
+    	  if(header1.at(i) != header2.at(i)){
 		same = false;
      	    	break;
       	  }
