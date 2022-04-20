@@ -23,7 +23,7 @@
   
   
   
-  NumberExprAST* step = dynamic_cast<NumberExprAST*>(forloop->
+  NumberExprAST* step = dynamic_cast<NumberExprAST*>(forloop->S
   if(step){
   header.push_back(step->Val);
   }
@@ -31,14 +31,14 @@
   
   }
   
-  NumberExprAST* start = dynamic_cast<NumberExprAST*>(forloop->
+  NumberExprAST* start = dynamic_cast<NumberExprAST*>(forloop->S
   	if(start){
   	header.push_back(start->Val);
   	printf(" this is 1: %f \n", start->Val);
   	}else{
   	
   	}
-  	BinaryExprAST* end = dynamic_cast<BinaryExprAST*>(forloop->En
+  	BinaryExprAST* end = dynamic_cast<BinaryExprAST*>(forloop->End
   	if(end){
   
   		NumberExprAST* valueright = dynamic_cast<NumberExprAST*>(end-> )
@@ -69,7 +69,7 @@
   	std::vector<double> header1 = findloopheader(valueleft);
   	std::vector<double> header2 = findloopheader(valueright);
 
-  	if(headerfor1.size() == 3 && headerfor2.size() == 3){
+  	if(header1.size() == 3 && header2.size() == 3){
     	
     	bool same = true;
     	for(int i = 0; i < 3; i++){
@@ -112,3 +112,32 @@
 
 
  }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
