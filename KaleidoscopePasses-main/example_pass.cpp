@@ -10,7 +10,7 @@
   	std::vector<double> header;
   
   	if(forloop){
-  		ExprAST* body1 = forloop ->Body.get();
+  		ExprAST* body1 = forloop->Body.get();
   
 
   
@@ -49,11 +49,11 @@
   	}
   }
   return header;
+  }
   
-  
-  
-  
-  
+  void ExamplePass(ModuleAST* TheModule) {
+	
+  //fprintf(stderr, "This Module has %lu externs and %lu functions!\n\n",
   
   
   for(auto const&x : TheModule->Functions){
@@ -70,6 +70,7 @@
   	std::vector<double> header2 = findloopheader(valueright);
 
   	if(headerfor1.size() == 3 && headerfor2.size() == 3){
+    	
     	bool same = true;
     	for(int i = 0; i < 3; i++){
     	  if(headerfor1.at(i) != headerfor2.at(i)){
@@ -84,7 +85,30 @@
 
 
 
-void ExamplePass(ModuleAST* TheModule) {
-  fprintf(stderr, "This Module has %lu externs and %lu functions!\n\n",
-    TheModule->Externs.size(), TheModule->Functions.size());
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	}
+
+
+
+
+
+
+ }
