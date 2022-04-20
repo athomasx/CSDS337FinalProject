@@ -12,6 +12,78 @@ std::vector<double> findloopheader(ForExprAst* forloop){
   ForExprAst* valueright = dynamic_cast<ForExprAST*>(exp->RHS.get())
   ForExprAst* valueright = dynamic_cast<ForExprAST*>(exp->LHS.get())
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  NumberExprAST* step = dynamic_cast<NumberExprAST*>(forloop->
+  
+  
+  
+  
+  
+  
+  
+  
+  	if(start){
+  	header.push_back(start->Val);
+  	printf(" this is 1: %f \n", start->Val);
+  	}else{
+  	
+  	}
+  	BinaryExprAST* end = dynamic_cast<BinaryExprAST*>(forloop->En
+  	if(end){
+  
+  		NumberExprAST* valueright = dynamic_cast<NumberExprAST*>(end-> )
+  		if(valueright){
+  			printf(" this is supposed to be n: %f \n", valueright->Va
+  			header.push_back(valueright->Val);
+  		}
+  	}
+  }
+  return header;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   std::vector<double> header1 = findloopheader(valueleft);
   std::vector<double> header2 = findloopheader(valueright);
 
