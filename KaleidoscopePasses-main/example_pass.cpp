@@ -6,62 +6,61 @@
 
 
   
-  std::vector<double> findloopheader(ForExprAST* forloop){
-  	std::vector<double> header;
+  std::vector<double> FindLoopExpression(ForExprAST* loop){
+  	std::vector<double> expression;
   
-  	if(forloop){
-  		ExprAST* body1 = forloop->Body.get();
-  		NumberExprAST* step = dynamic_cast<NumberExprAST*>(forloop->Step.get());
+  	if(loop){
+  		ExprAST* body = loop->Body.get();
+  		NumberExprAST* step = dynamic_cast<NumberExprAST*>(loop->Step.get());
   		if(step){
-  			header.push_back(step->Val);
+  			expression.push_back(step->Val);
   		}
   		else{
   
   		}
   
-  		NumberExprAST* start = dynamic_cast<NumberExprAST*>(forloop->Start.get());
+  		NumberExprAST* start = dynamic_cast<NumberExprAST*>(loop->Start.get());
   		if(start){
-  			header.push_back(start->Val);
+  			expression.push_back(start->Val);
   			printf(" this is 1: %f \n", start->Val);
   		}else{
   	
   		}
-  		BinaryExprAST* end = dynamic_cast<BinaryExprAST*>(forloop->End.get());
+  		BinaryExprAST* end = dynamic_cast<BinaryExprAST*>(loop->End.get());
   		if(end){
   
-  			NumberExprAST* valueright = dynamic_cast<NumberExprAST*>(end->RHS.get());
-  			if(valueright){
-  				printf(" this is supposed to be n: %f \n", valueright->Val);
-  				header.push_back(valueright->Val);
+  			NumberExprAST* rvalue = dynamic_cast<NumberExprAST*>(end->RHS.get());
+  			if(rvalue){
+  				printf(" this is supposed to be n: %f \n", rvalue->Val);
+  				expression.push_back(rvalue->Val);
   			}
   		}
   	}
-  	return header;
+  	return expression;
   }
   
   void ExamplePass(ModuleAST* TheModule) {
   //fprintf(stderr, "This Module has %lu externs and %lu functions!\n\n",
   	for(auto const& n : TheModule->Functions){
   		FunctionAST* func = n.second.first.get();
-  		ForExprAST* forloop;
-  		BinaryExprAST* exp = dynamic_cast<BinaryExprAST*>(func->Body.get());
+  		ForExprAST* loop;
+  		BinaryExprAST* body = dynamic_cast<BinaryExprAST*>(func->Body.get());
   
-  		ForExprAST* valueright = dynamic_cast<ForExprAST*>(exp->RHS.get());
-  		ForExprAST* valueleft = dynamic_cast<ForExprAST*>(exp->LHS.get());
+  		ForExprAST* RValue = dynamic_cast<ForExprAST*>(body->RHS.get());
+  		ForExprAST* LValue = dynamic_cast<ForExprAST*>(body->LHS.get());
   
-  		std::vector<double> header1 = findloopheader(valueright);
-  		std::vector<double> header2 = findloopheader(valueleft);
+  		std::vector<double> exp1 = FindLoopExpression(RValue);
+  		std::vector<double> exp2 = FindLoopExpression(LValue);
 
-  		if(header1.size() == 3 && header2.size() == 3){
-    			bool same = true;
+  		if(exp1.size() == 3 && exp2.size() == 3){
+    			bool check = true;
     			for(int i = 0; i < 3; i++){
-    	  			if(header1.at(i) != header2.at(i)){
-					same = false;
-					printf("Incorrect headers: %f %f \n", header1.at(i), header2.at(i));
-     	    				break;
+    	  			if(exp1.at(i) != exp2.at(i)){
+					check = false;
+					//printf("Incorrect headers: %f %f \n", exp1.at(i), exp2.at(i));
       	  			}
     			}
-    			if(same){
+    			if(check){
       				printf("test");
     			}		
   		}	
