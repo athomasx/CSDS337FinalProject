@@ -19,7 +19,6 @@
   			expression.push_back(start->Val);
   			NumberExprAST* RValue = dynamic_cast<NumberExprAST*>(end->RHS.get());
   			if(RValue){
-  				printf(" this is supposed to be n: %f \n", RValue->Val);
   				expression.push_back(RValue->Val);
   			}
   		}
@@ -43,10 +42,7 @@
   		std::vector<double> exp2 = FindLoopExpression(LValue);
 
   		if(exp1.size() == exp2.size()){
-    	  		if((exp1.at(0) != exp2.at(0)) || (exp1.at(1) != exp2.at(1)) || (exp1.at(2) != exp2.at(2))){
-					printf("Expressions not equal \n");
-      	  		}
-    			else{
+    	  		if((exp1.at(0) == exp2.at(0)) && (exp1.at(1) == exp2.at(1)) && (exp1.at(2) == exp2.at(2))){
     				BinaryExprAST * newExpression = new BinaryExprAST(':', nullptr, nullptr);
     				newExpression->RHS.swap(RValue->Body);
     				newExpression->LHS.swap(LValue->Body);
