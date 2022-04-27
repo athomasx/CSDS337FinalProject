@@ -33,7 +33,6 @@
   void ExamplePass(ModuleAST* TheModule) {
   	for(auto const& n : TheModule->Functions){
   		FunctionAST* func = n.second.first.get();
-  		ForExprAST* loop;
   		BinaryExprAST* body = dynamic_cast<BinaryExprAST*>(func->Body.get());
   
   		ForExprAST* RValue = dynamic_cast<ForExprAST*>(body->RHS.get());
@@ -43,12 +42,18 @@
   		ForExprAST* LValue = dynamic_cast<ForExprAST*>(body->LHS.get());		
   		std::vector<double> exp2 = FindLoopExpression(LValue);
 
-  		if(exp1.size() == 3 && exp2.size() == 3){
+  		if(exp1.size() == exp2.size()){
     	  		if((exp1.at(0) != exp2.at(0)) || (exp1.at(1) != exp2.at(1)) || (exp1.at(2) != exp2.at(2))){
 					printf("Expressions not equal \n");
       	  		}
     			else{
-      				printf("test");
+    				BinaryExprAST * newExpression = new BinaryExprAST(':', nullptr, nullptr);
+    				newExpression->RHS.swap(RValue->Body);
+    				newExpression->LHS.swap(LValue->Body);
+    				
+    				LValue->Body.reset(newExpression);
+    				
+    				func->Body.swap(body->LHS);
     			}		
   		}	
  	}
