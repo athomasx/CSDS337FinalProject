@@ -43,11 +43,12 @@
 
   		if(exp1.size() == exp2.size()){
     	  		if((exp1.at(0) == exp2.at(0)) && (exp1.at(1) == exp2.at(1)) && (exp1.at(2) == exp2.at(2))){
-    				BinaryExprAST * newExpression = new BinaryExprAST(':', nullptr, nullptr);
-    				newExpression->RHS.swap(RValue->Body);
-    				newExpression->LHS.swap(LValue->Body);
+    				BinaryExprAST* newLoop = new BinaryExprAST(':', nullptr, nullptr);
     				
-    				LValue->Body.reset(newExpression);
+    				newLoop->RHS.swap(RValue->Body);
+    				newLoop->LHS.swap(LValue->Body);
+    				
+    				LValue->Body.reset(newLoop);
     				
     				func->Body.swap(body->LHS);
     			}		
